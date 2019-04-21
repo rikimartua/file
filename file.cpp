@@ -4,8 +4,7 @@ using namespace std;
 int main(){
 	
 	int pilih,jumlah;
-	string data;
-	char namafile[10];
+	char data[30][30],namafile[30];
 	cout<<"input nama file = ";cin>>namafile;
 	do
 	{
@@ -13,41 +12,34 @@ int main(){
 	cout<<"menu"<<endl;
 	cout<<"1. INPUT "<<endl;
 	cout<<"2. OUTPUT "<<endl;
-	cout<<"3. EXIT "<<endl;
 	cout<<"\npilih = ";
 	cin>>pilih;
 	if (pilih==1)
 	{
+	cout<<"Masukkan jumlah data = ";cin>>jumlah;
 	ofstream masuk;
 	masuk.open(namafile,ios::app);
-	cout<<"Masukkan jumlah data = ";
-	cin>>jumlah;
-	for (int i = 0; i < jumlah; i++)
-	{
-	cout<<"masukkan nama = ";
-	cin>>data;
-	masuk<<data<<endl;
+	for (int i = 0; i < jumlah; i++){
+	cout<<"masukkan nama = ";cin>>data[i];
+	masuk<<data[i]<<endl;
 	}
 	masuk.close();
 	}
 	else
-	if(pilih==2){
+	{
 	ifstream keluar;
 	keluar.open(namafile);
-	for (int j = 0; j < jumlah; j++)
+	int i = 0;
+	while (keluar>>data[i])
 	{
-	if(keluar>>data){
-	
 	cout<<" nama = ";
-	cout<<data<<endl;
-	}
+	cout<<data[i]<<endl;
+	i++;
+	
 	}
 	keluar.close();
 	}
-	else
-	return 0;
-	
-	
 	} while (true);
+	
 	
 }
